@@ -20,128 +20,133 @@ import java.io.InputStreamReader;
 public class SecondActivity extends AppCompatActivity {
 
     TextView tv_Data;
+    Button btn_Shared, btn_IS, btn_IC, btn_EC, btn_ES, btn_EPS, btn_Next;
     FileInputStream fis;
     BufferedReader br;
-    Button btn_Shared, btn_IS, btn_IC, btn_EC, btn_ES, btn_EPS, btn_Previous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        tv_Data = (TextView) findViewById(R.id.tvData);
         btn_Shared = (Button) findViewById(R.id.btnSP);
         btn_IS = (Button) findViewById(R.id.btnIS);
         btn_IC = (Button) findViewById(R.id.btnIC);
         btn_EC = (Button) findViewById(R.id.btnEC);
         btn_ES = (Button) findViewById(R.id.btnES);
         btn_EPS = (Button) findViewById(R.id.btnEPS);
-        btn_Previous = (Button) findViewById(R.id.btnPrevious);
+        btn_Next = (Button) findViewById(R.id.btnNext);
+        tv_Data = (TextView) findViewById(R.id.tvData);
 
     }
 
-    public void callMainActivity (View view) {
+    public void previous (View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     public void loadSharedPreference(View view) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());;
-        String data = preferences.getString("data","");
-        tv_Data.setText(data);
+        String message = preferences.getString("data","");
+        tv_Data.setText(message);
     }
 
-    public void loadInternalStorage (View view) throws IOException {
-        String newline = "";
-        String data = "";
+    public void loadInternalStorage (View view) {
+        Intent intent = getIntent();
+        String filename = intent.getStringExtra("filename");
+        String read, message = "";
         try{
-            fis = openFileInput("storage.txt");
+            fis = openFileInput(filename+".txt");
             br = new BufferedReader(new InputStreamReader(fis));
-            if ((newline = br.readLine()) != null)
-                data = newline;
+            if ((read = br.readLine()) != null)
+                message = read;
             fis.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_Data.setText(data);
+        tv_Data.setText(message);
     }
 
-    public void loadInternalCache(View view) throws FileNotFoundException {
-        String newline = "";
-        String data = "";
+    public void loadInternalCache(View view) {
+        Intent intent = getIntent();
+        String filename = intent.getStringExtra("filename");
+        String read, message = "";
         File folder = getCacheDir();
-        File file = new File(folder, "storage.txt");
-        fis = new FileInputStream(file);
+        File file = new File(folder, filename+".txt");
         try{
+            fis = new FileInputStream(file);
             br = new BufferedReader(new InputStreamReader(fis));
-            if ((newline = br.readLine()) != null)
-                data = newline;
+            if ((read = br.readLine()) != null)
+                message = read;
             fis.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_Data.setText(data);
+        tv_Data.setText(message);
     }
 
-    public void loadExternalCache(View view) throws FileNotFoundException {
-        String newline = "";
-        String data = "";
+    public void loadExternalCache(View view) {
+        Intent intent = getIntent();
+        String filename = intent.getStringExtra("filename");
+        String read, message = "";
         File folder = getExternalCacheDir();
-        File file = new File(folder, "storage.txt");
-        fis = new FileInputStream(file);
+        File file = new File(folder, filename+".txt");
         try{
+            fis = new FileInputStream(file);
             br = new BufferedReader(new InputStreamReader(fis));
-            if ((newline = br.readLine()) != null)
-                data = newline;
+            if ((read = br.readLine()) != null)
+                message = read;
             fis.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_Data.setText(data);
+        tv_Data.setText(message);
     }
 
-    public void loadExternalStorage (View view) throws FileNotFoundException {
-        String newline = "";
-        String data = "";
-        File folder = getExternalFilesDir("Dominique");
-        File file = new File(folder, "storage.txt");
-        fis = new FileInputStream(file);
+    public void loadExternalStorage (View view) {
+        Intent intent = getIntent();
+        String filename = intent.getStringExtra("filename");
+        String read, message = "";
+        File folder = getExternalFilesDir("Dianne");
+        File file = new File(folder, filename+".txt");
         try{
+            fis = new FileInputStream(file);
             br = new BufferedReader(new InputStreamReader(fis));
-            if ((newline = br.readLine()) != null)
-                data = newline;
+            if ((read = br.readLine()) != null)
+                message = read;
             fis.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_Data.setText(data);
+        tv_Data.setText(message);
     }
 
-    public void loadExternalPublic (View view) throws FileNotFoundException {
-        String newline = "";
-        String data = "";
+    public void loadExternalPublic (View view) {
+        Intent intent = getIntent();
+        String filename = intent.getStringExtra("filename");
+        String read, message = "";
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        File file = new File (folder, "storage.txt");
-        fis = new FileInputStream(file);
+        File file = new File (folder, filename+".txt");
         try{
+            fis = new FileInputStream(file);
             br = new BufferedReader(new InputStreamReader(fis));
-            if ((newline = br.readLine()) != null)
-                data = newline;
+            if ((read = br.readLine()) != null)
+                message = read;
             fis.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_Data.setText(data);
+        tv_Data.setText(message);
 
     }
 }
