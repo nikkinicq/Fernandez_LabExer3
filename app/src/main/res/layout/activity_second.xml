@@ -9,80 +9,72 @@
 
     <Button
         android:id="@+id/btnSP"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:text="Shared Preferences"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="#64b5f6"
-        android:onClick="loadSharedPreference"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shared Preference"
+        android:layout_below="@+id/tvLabel"
+        android:layout_marginTop="20dp"
+        android:onClick="loadSharedPreference"
+        android:background="#b3e5fc"/>
 
     <Button
         android:id="@+id/btnIS"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Internal Storage"
-        android:onClick="loadInternalStorage"
-        android:background="#b3e5fc"
         android:layout_below="@+id/btnSP"
-        android:layout_alignLeft="@+id/btnSP"
-        android:layout_alignStart="@+id/btnSP" />
+        android:onClick="loadInternalStorage" />
 
     <Button
         android:id="@+id/btnIC"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Internal Cache"
         android:layout_below="@+id/btnIS"
-        android:layout_centerHorizontal="true"
         android:onClick="loadInternalCache"
-        android:background="#64b5f6"/>
+        android:background="#b3e5fc"/>
 
     <Button
         android:id="@+id/btnEC"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="External Cache"
         android:layout_below="@+id/btnIC"
-        android:layout_centerHorizontal="true"
-        android:onClick="loadExternalCache"
-        android:background="#b3e5fc"/>
+        android:onClick="loadExternalCache" />
 
     <Button
         android:id="@+id/btnES"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="External Storage"
         android:layout_below="@+id/btnEC"
-        android:layout_centerHorizontal="true"
         android:onClick="loadExternalStorage"
-        android:background="#64b5f6"/>
-
-    <Button
-        android:id="@+id/btnEP"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:text="External Public Storage"
-        android:layout_below="@+id/btnES"
-        android:layout_centerHorizontal="true"
-        android:onClick="loadExternalPublic"
         android:background="#b3e5fc"/>
 
     <Button
+        android:id="@+id/btnEPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="External Public Storage"
+        android:layout_below="@+id/btnES"
+        android:onClick="loadExternalPublic" />
+
+    <Button
         android:id="@+id/btnPrevious"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Previous"
-        android:layout_below="@+id/btnEP"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="#90a4ae"
-        android:onClick="callMainActivity"/>
+        android:layout_below="@+id/btnEPS"
+        android:onClick="previous"
+        android:background="#b3e5fc"/>
 
     <TextView
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/btnPrevious"
+        android:id="@+id/tvData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginBottom="50dp"
+        android:text=""
+        android:textSize="14sp" />
 </RelativeLayout>
