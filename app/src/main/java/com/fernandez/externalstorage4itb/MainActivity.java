@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         et_Data = (EditText) findViewById(R.id.etData);
-        et_Filename = (EditText) findViewById(R.id.etFileName);
+        et_Filename = (EditText) findViewById(R.id.etFilename);
         btn_Shared = (Button) findViewById(R.id.btnSP);
         btn_IS = (Button) findViewById(R.id.btnIS);
         btn_IC = (Button) findViewById(R.id.btnIC);
@@ -41,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         btn_Next = (Button) findViewById(R.id.btnNext);
     }
 
-    public void callSecondActivity (View view) {
+    public void next (View view) {
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("filename", et_Filename.getText().toString());
         startActivity(intent);
     }
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("data", et_Data.getText().toString());
         editor.commit();
-        Toast.makeText(this, "Preferences Saved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successfully written Preferences!", Toast.LENGTH_SHORT).show();
     }
 
     public void saveInternalStorage (View view) {
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        Toast.makeText(this, "Storage saved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successfully written internal storage!", Toast.LENGTH_SHORT).show();
     }
 
     public void saveInternalCache(View view){
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(folder, filename + ".txt");
         String message = et_Data.getText().toString();
         writeData(file, message);
-        Toast.makeText(this,"Successfully writtin to internal cache!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Successfully written to internal cache!", Toast.LENGTH_LONG).show();
     }
 
     public void saveExternalCache (View view) {
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveExternalStorage (View view) {
         String filename = et_Filename.getText().toString();
-        File folder = getExternalFilesDir("<PANGALAN MO DITO>");
+        File folder = getExternalFilesDir("Dianne");
         File file = new File(folder, filename + ".txt");
         String message = et_Data.getText().toString();
         writeData(file, message);
